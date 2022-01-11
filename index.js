@@ -20,7 +20,10 @@ Do the following:
    HINT: no function required
 */
 
-
+const votingAge = 18;
+if (votingAge >= 18) {
+  console.log(`Voting age: ${votingAge}`);
+}
 
 /*
 Task 1b - Values
@@ -33,9 +36,14 @@ Do the following:
    HINT: no function required
 */
 
+let value1 = true;
+let value2 = 'change me!';
 
+if (value1) {
+  value2 = 'I\'ve changed!';
+}
 
-
+console.log(value2);
 
 /*
 Task 1c - Convert Strings to Numbers
@@ -48,8 +56,8 @@ Do the following:
    HINT: look up the Number method
 */
 
-
-
+let year = '1999';
+console.log(Number(year));
 
 /*
 Task 1d - Multiply
@@ -60,11 +68,11 @@ Do the following:
    3. Multiply a and b and return the answer
 */
 
-function multiply(/*add your code here*/){
-  /*add your code here*/
+function multiply(a, b){
+  return a * b;
 }
 
-
+console.log(multiply(3,4));
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀*/
 
@@ -76,11 +84,11 @@ Do the following:
  3. Return the newly calculated age
 */
 
-function dogYears(/*add your code here*/){
-  /*add your code here*/
+function dogYears(humanAge){
+  return humanAge * 7;
 }
 
-
+//console.log(`You are ${dogYears(33)} in dog years.`);
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀*/
 
@@ -109,11 +117,23 @@ Puppies less than 1 year
 NOTE: If done correctly, a weight of 15 lbs and age of 1 year would return 0.44999999999999996
 */  
 
-function hungryDog(/*add your code here*/){
-  /*add your code here*/
+function hungryDog(bodyWeight, dogAge){
+  if (bodyWeight > 15) {
+    return bodyWeight * 0.02;
+  } else if (isBetween(11, 15, bodyWeight)) {
+    return bodyWeight * 0.03;
+  } else if (isBetween(7/12, 11.99, dogAge) || isBetween(6, 10, bodyWeight)) {
+    return bodyWeight * 0.04;
+  } else if (isBetween(4/12, 7/12, dogAge) || (dogAge >= 1 && bodyWeight <= 5)) {
+    return bodyWeight * 0.05;
+  } else if (isBetween(2/12, 4/12, dogAge)) {
+    return bodyWeight * 0.1;
+  }
 }
 
-
+function isBetween(lowNum, highNum, givenNum) {
+  return lowNum <= givenNum && givenNum >= highNum;
+}
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀*/
 
