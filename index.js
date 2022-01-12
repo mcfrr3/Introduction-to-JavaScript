@@ -85,7 +85,7 @@ Do the following:
 */
 
 function dogYears(humanAge){
-  return humanAge * 7;
+  return Number(humanAge) * 7;
 }
 
 //console.log(`You are ${dogYears(33)} in dog years.`);
@@ -117,22 +117,24 @@ Puppies less than 1 year
 NOTE: If done correctly, a weight of 15 lbs and age of 1 year would return 0.44999999999999996
 */  
 
-function hungryDog(bodyWeight, dogAge){
-  if (bodyWeight > 15) {
-    return bodyWeight * 0.02;
-  } else if (isBetween(11, 15, bodyWeight)) {
-    return bodyWeight * 0.03;
-  } else if (isBetween(7/12, 11.99, dogAge) || isBetween(6, 10, bodyWeight)) {
-    return bodyWeight * 0.04;
-  } else if (isBetween(4/12, 7/12, dogAge) || (dogAge >= 1 && bodyWeight <= 5)) {
-    return bodyWeight * 0.05;
-  } else if (isBetween(2/12, 4/12, dogAge)) {
-    return bodyWeight * 0.1;
+function hungryDog(weight, age){
+  if (weight > 15 && age >= 1) {
+    return weight * 0.02;
+  } else if (isBetween(11, 15, weight)) {
+    return weight * 0.03;
+  } else if (isBetween(0.583, .99, age) || isBetween(6, 10, weight)) {
+    return weight * 0.04;
+  } else if (isBetween(4/12, 7/12, age) || (age >= 1 && weight <= 5)) {
+    return weight * 0.05;
+  } else if (isBetween(2/12, 4/12, age)) {
+    return weight * 0.1;
   }
 }
 
+console.log(hungryDog(4, 0.583));
+
 function isBetween(lowNum, highNum, givenNum) {
-  return lowNum <= givenNum && givenNum >= highNum;
+  return lowNum <= givenNum && givenNum <= highNum;
 }
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀*/
@@ -158,11 +160,56 @@ RULES OF THE GAME: Scissors beats Paper | Paper beats Rock | Rock beats Scissors
 HINT: Remember that the order in which we pass in our arguments matters when it comes to parameters
 */
 
-function game(user, computer){
-  /*add your code here*/
+const randChoice = Math.floor(Math.random() * 3);
+let computer = '';
+
+if (randChoice === 0) {
+  computer = 'rock';
+} else if (randChoice === 1) {
+  computer = 'paper';
+} else if (randChoice === 2) {
+  computer = 'scissors';
 }
 
+function game(user, computer){
+  if (user === 'rock') {
+    if (computer === 'rock') {
+      return tieText();
+    } else if (computer === 'paper') {
+      return loseText();
+    } else {
+      return winText();
+    }
+  } else if (user === 'paper') {
+    if (computer === 'rock') {
+      return winText();
+    } else if (computer === 'paper') {
+      return tieText();
+    } else {
+      return loseText();
+    }
+  } else {
+    if (computer === 'rock') {
+      return loseText();
+    } else if (computer === 'paper') {
+      return winText();
+    } else {
+      return tieText();
+    }
+  }
+}
 
+function winText() {
+  return "you win!";
+}
+
+function loseText() {
+  return "you lose!";
+}
+
+function tieText() {
+  return "it's a tie";
+}
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀*/
 
@@ -175,8 +222,8 @@ Using the miles function below do the following:
 3. Return the number of miles
 */
 
-function miles(/*add your code here*/){
-  /*add your code here*/
+function miles(km){
+  return km * 0.621371;
 }
 
 
@@ -189,11 +236,9 @@ Using the feet function below do the following:
 3. Return number of feet
 */
 
-function feet(/*add your code here*/){
-  /*add your code here*/
+function feet(cm){
+  return cm / 30.48;
 }
-
-
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀*/
 
@@ -205,8 +250,8 @@ Using the annoyingSong function below do the following:
     "{number} bottles of soda on the wall, {number} bottles of soda, take one down pass it around {number left over} bottles of soda on the wall"
 */
 
-function annoyingSong(/*add your code here*/){
-      /*add your code here*/
+function annoyingSong(number){
+  return `${number} bottles of soda on the wall, ${number} bottles of soda, take one down pass it around ${number - 1} bottles of soda on the wall`;
 }
 
 
@@ -225,8 +270,18 @@ Using the grade function below do the following:
  below should return 'you got an F'
 */
 
-function grade(/*Your Code here */){
-/*Your Code here */
+function grade(score){
+  if (score >= 90) {
+    return 'you got an A';
+  } else if (isBetween(80, 89, score)) {
+    return 'you got a B';
+  } else if (isBetween(70, 79, score)) {
+    return 'you got a C';
+  } else if (isBetween(60, 69, score)) {
+    return 'you got a D';
+  } else {
+    return 'you got an F';
+  }
 }
 
 
@@ -244,8 +299,17 @@ HINT - try looking up the .includes() method
 */
 
 
-function vowelCounter(/*add your code here*/) {
-  /*add your code here*/
+function vowelCounter(string) {
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
+  let vowelCounter = 0;
+  
+  for (let i = 0; i < string.length; i++) {
+    if (vowels.includes(string[i])) {
+      vowelCounter++;
+    }
+
+    return vowelCounter;
+  }
 }
 
 
